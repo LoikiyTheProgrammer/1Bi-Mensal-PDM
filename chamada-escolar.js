@@ -91,38 +91,49 @@ let chamadaDeAlunos = [
     },
 ]
 
-function listarAlunos(listaDeAlunos: aluno[]) {
+function listarAlunos(chamadaDeAlunos) {
     chamadaDeAlunos.forEach(aluno => { 
         console.log(aluno.nome)
         console.log(aluno.numeroChamada)
     })
 }
 
-function buscarAlunoPeloNumeroDaChamada(numeroChamada: number = "1221") {
-    for (let i = 0; i < chamadaDeAlunos.length; i++) {
-        if (chamadaDeAlunos[i] === numeroChamada.number) {
-            console.log(`Encontrei ${chamadaDeAlunos.nome}`)
+function buscarAlunoPeloNumeroDaChamada(numeroChamada, listaDeAlunos) {
+    for (let i = 0; i < listaDeAlunos.length; i++) {
+        if (numeroChamada === listaDeAlunos[i].numeroChamada) {
+            console.log(`Encontrei ${listaDeAlunos[i].nome}, ${listaDeAlunos[i].numeroChamada}`)
+            return
         }
     }
+    console.log("Não encontrei")
 }
 
 function listarAlunoPorMesMatricula(listaDeAlunos: aluno[], mes: string, ano: string) {
+    //n sei
 }
 
-function listarAlunosAprovados(listaDeAlunos: aluno[]) {
-    if (materia.nota >= 6 && materia.presenca >= 75) {
-        console.log("APROVADO")
-        console.log("NOTA: " + materia.nota)
-        console.log("PRESENCA: " + materia.presenca)
-        return
-    }
+function listarAlunosAprovados(listaDeAlunos) {
+    listaDeAlunos.forEach(aluno => {
+        aluno.materias.forEach(materia => {
+            if (materia.nota >= 6 && materia.presenca >= 75) {
+                console.log("APROVADO")
+                console.log("NOTA: " + materia.nota)
+                console.log("PRESENCA: " + materia.presenca)
+                console.log("ALUNO: " + aluno.nome)
+            }
+        })
+    })
 }
 
-function listarAlunosReprovados(listaDeAlunos: aluno[]) {
-    if (materia.nota < 6 || materia.presenca < 75) {
-        console.log("REPROVADO: ")
-        console.log("NOTA: " + materia.nota)
-        console.log("PRESENCA: " + materia.presenca)
-        return
-    }
+function listarAlunosReprovados(listaDeAlunos) {
+    listaDeAlunos.forEach(aluno => {
+        aluno.materias.forEach(materia => {
+            if (materia.nota < 6 || materia.presenca < 75) {
+                console.log("REPROVADO")
+                console.log("NOTA: " + materia.nota)
+                console.log("PRESENCA: " + materia.presenca)
+                console.log("ALUNO: " + aluno.nome)
+            }
+        })
+    })
 }
